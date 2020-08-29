@@ -12,7 +12,7 @@ function saveNote(note, callback) {
     getNotes(data => {
        note.id = uuid();
        data.push(note);
-       fs.writeFile("db/db.json", JSON.stringify(data), (err) => {
+       fs.writeFile("db/db.json", JSON.stringify(data, null, 2), (err) => {
            if (err) throw err;
            callback(note);
         });
