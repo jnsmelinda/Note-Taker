@@ -1,20 +1,23 @@
 const fs = require("fs");
 
-const getNotes = (callback) => {
+function getNotes(processDataFunction) {
     fs.readFile("db/db.json", "utf8", (err, data) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-
-        callback(data);
+        if (err) throw err;
+        processDataFunction(JSON.parse(data));
     });
-};
+}
 
-const saveNote = (note) => {
-};
+function saveNote(note, callback) {
+    getNotes(data => {
+       data.push(note);
+       fs.writeFile("db/db.json", JSON.stringify(data), (err) => {
+           if (err) throw err;
+           callback(note);
+        });
+    });
+}
 
-const deleteNote = (id) => {
-};
+function deleteNote(id) {
+}
 
-module.exports = {getNotes, saveNote, deleteNote};
+module.exports = { getNotes, saveNote, deleteNote };
