@@ -9,6 +9,7 @@ var PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 app.get("/api/notes", (req, res) => dao.getNotes(notes => res.json(notes)));
 app.post("/api/notes", (req, res) => dao.saveNote(req.body, note => res.json(note)));
