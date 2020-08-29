@@ -19,7 +19,14 @@ function saveNote(note, callback) {
     });
 }
 
-function deleteNote(id) {
+function deleteNote(id, callback) {
+    getNotes(data => {
+        const newData = data.filter(e => e.id !== id);
+        fs.writeFile("db/db.json", JSON.stringify(newData, null, 2), (err) => {
+            if (err) throw err;
+            callback();
+         });
+    });
 }
 
 module.exports = { getNotes, saveNote, deleteNote };
