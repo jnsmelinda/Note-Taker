@@ -20,6 +20,7 @@ For users that need to keep track of a lot of information, it's easy to forget o
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [Git](https://git-scm.com/), [GitHub](https://github.com)
+- [Bash](https://www.gnu.org/software/bash/)
 
 ## License
 This repository is protected under the [MIT](https://choosealicense.com/licenses/mit/) license.
