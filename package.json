@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-watch",
-    "serve": "npm start"
+    "serve": "npm start",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
