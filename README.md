@@ -32,4 +32,5 @@ You can contact me about issues and suggestions in [Email](mailto:jns.melinda@gm
 
 ## Others
 Original desing and supporting files are from the [University of Washington coding bootcamp](https://bootcamp.uw.edu).
+</br>
 © 2020 Melinda Ivanov
