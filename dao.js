@@ -1,32 +1,40 @@
 const fs = require("fs");
 const { v4: uuid } = require('uuid');
 
-function getNotes(processDataFunction) {
-    fs.readFile("db/db.json", "utf8", (err, data) => {
-        if (err) throw err;
-        processDataFunction(JSON.parse(data));
+const fileName = "db/db.json";
+
+function getNotes(callback, next) {
+    fs.readFile(fileName, "utf8", (err, data) => {
+        if (err) next(err);
+        else callback(JSON.parse(data));
     });
 }
 
-function saveNote(note, callback) {
-    getNotes(data => {
-       note.id = uuid();
-       data.push(note);
-       fs.writeFile("db/db.json", JSON.stringify(data, null, 2), (err) => {
-           if (err) throw err;
-           callback(note);
-        });
-    });
+function saveNote(note, callback, next) {
+    getNotes(
+        data => {
+            note.id = uuid();
+            data.push(note);
+            fs.writeFile(fileName, JSON.stringify(data, null, 2), (err) => {
+                if (err) next(err);
+                else callback(note);
+            });
+        },
+        next
+    );
 }
 
-function deleteNote(id, callback) {
-    getNotes(data => {
-        const newData = data.filter(e => e.id !== id);
-        fs.writeFile("db/db.json", JSON.stringify(newData, null, 2), (err) => {
-            if (err) throw err;
-            callback();
-         });
-    });
+function deleteNote(id, callback, next) {
+    getNotes(
+        data => {
+            const newData = data.filter(e => e.id !== id);
+            fs.writeFile(fileName, JSON.stringify(newData, null, 2), (err) => {
+                if (err) next(err);
+                else callback();
+            });
+        },
+        next
+    );
 }
 
 module.exports = { getNotes, saveNote, deleteNote };
