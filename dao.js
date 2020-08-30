@@ -1,8 +1,10 @@
+// Series of npm packages that we will use to give our server useful functionality
 const fs = require("fs");
 const {v4: uuid} = require("uuid");
 
 const fileName = "db/db.json";
 
+// Retrives all the notes
 function getNotes(callback, next) {
     fs.readFile(fileName, "utf8", (err, data) => {
         if (err) next(err);
@@ -10,6 +12,7 @@ function getNotes(callback, next) {
     });
 }
 
+// Saves a note
 function saveNote(note, callback, next) {
     getNotes(
         (data) => {
@@ -24,6 +27,7 @@ function saveNote(note, callback, next) {
     );
 }
 
+// Deletes a note by its unique id
 function deleteNote(id, callback, next) {
     getNotes(
         (data) => {
