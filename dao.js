@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { v4: uuid } = require('uuid');
+const {v4: uuid} = require("uuid");
 
 const fileName = "db/db.json";
 
@@ -12,7 +12,7 @@ function getNotes(callback, next) {
 
 function saveNote(note, callback, next) {
     getNotes(
-        data => {
+        (data) => {
             note.id = uuid();
             data.push(note);
             fs.writeFile(fileName, JSON.stringify(data, null, 2), (err) => {
@@ -26,8 +26,8 @@ function saveNote(note, callback, next) {
 
 function deleteNote(id, callback, next) {
     getNotes(
-        data => {
-            const newData = data.filter(e => e.id !== id);
+        (data) => {
+            const newData = data.filter((e) => e.id !== id);
             fs.writeFile(fileName, JSON.stringify(newData, null, 2), (err) => {
                 if (err) next(err);
                 else callback();
@@ -37,4 +37,4 @@ function deleteNote(id, callback, next) {
     );
 }
 
-module.exports = { getNotes, saveNote, deleteNote };
+module.exports = {getNotes, saveNote, deleteNote};

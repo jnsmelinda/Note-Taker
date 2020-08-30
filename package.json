@@ -16,7 +16,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "npm-watch": "^0.7.0",
     "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "npm-watch": "^0.7.0",
+    "eslint": "^7.7.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
